@@ -3,7 +3,9 @@ import { ExperienceDisplay } from './components/experience/ExperienceDisplay';
 function App() {
   return (
     <>
-      <ExperienceDisplay totalExperience='500' />
+      <div style={{ width: '50%' }}>
+        <ExperienceDisplay gainedExperience={1000} totalExperience={5000} />
+      </div>
     </>
   );
 }
