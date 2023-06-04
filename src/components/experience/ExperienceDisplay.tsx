@@ -1,9 +1,9 @@
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../store';
 import s from './ExperienceDisplay.module.scss';
-import {
-  getLevelByGainedExperience,
-  getPercentageComplete,
-  getTotalExperienceByLevel,
-} from './levels';
+import { setExperienceGained } from './levelSlice';
+//import { setExperienceGained } from './levelActions';
 
 interface IExperienceDisplayProps {
   gainedExperience: number;
@@ -12,15 +12,24 @@ interface IExperienceDisplayProps {
 export const ExperienceDisplay = ({
   gainedExperience,
 }: IExperienceDisplayProps) => {
-  const level: string = getLevelByGainedExperience(gainedExperience);
-  const totalExperience: number = getTotalExperienceByLevel(Number(level));
-  const percentComplete: number = getPercentageComplete(
-    gainedExperience,
-    totalExperience
+  const [renderCounter, setRenderCounter] = useState<number>(0);
+  const dispatch = useDispatch();
+  const level = useSelector((state: RootState) => state.level.level);
+  const totalExperience = useSelector(
+    (state: RootState) => state.level.totalExperienceForLevel
+  );
+  const percentComplete = useSelector(
+    (state: RootState) => state.level.percentComplete
   );
 
+  useEffect(() => {
+    dispatch(setExperienceGained(gainedExperience));
+    setRenderCounter(renderCounter + 1);
+    console.log('rendering');
+  }, [dispatch]);
+
   function numberWithCommas(x: number) {
-    return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    return x ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;
   }
 
   return (

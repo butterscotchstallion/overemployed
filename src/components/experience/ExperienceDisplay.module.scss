@@ -19,22 +19,6 @@
   }
 }
 
-.segmentItem {
-  display: table-cell;
-  width: 100%;
-  border: 5px solid #fff;
-
-  div {
-    background-color: skyblue;
-    width: 100%;
-    border: 1px solid navy;
-
-    &.filled {
-      background-color: #000;
-    }
-  }
-}
-
 progress[value] {
   /* Reset the default appearance */
   -webkit-appearance: none;

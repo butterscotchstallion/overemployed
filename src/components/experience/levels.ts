@@ -1,4 +1,4 @@
-const levelOne = 5000;
+const levelOneXP = 5000;
 const MAX_LEVEL = 100;
 interface ILevelXPMap {
   [level: number]: number;
@@ -6,7 +6,7 @@ interface ILevelXPMap {
 const levelXPMap: ILevelXPMap = {};
 
 for (let j = 1; j <= MAX_LEVEL; j++) {
-  levelXPMap[j] = levelOne * j;
+  levelXPMap[j] = levelOneXP * j;
 }
 
 function getLevelByGainedExperience(xp: number): string {
@@ -27,7 +27,7 @@ function getPercentageComplete(
   gainedExperience: number,
   totalExperience: number
 ): number {
-  return +((gainedExperience / totalExperience) * 100).toFixed(2);
+  return +((gainedExperience / totalExperience) * 100).toFixed(1);
 }
 
 export {
