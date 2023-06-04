@@ -1,5 +1,22 @@
 // eslint-disable-next-line no-undef
 module.exports = {
+  collectCoverage: true,
+  coverageDirectory: 'coverage',
+  coverageReporters: [
+    'clover',
+    'json',
+    'lcov',
+    ['text', { skipFull: true }],
+    'text-summary',
+  ],
+  coverageThreshold: {
+    global: {
+      branches: 80,
+      functions: 80,
+      lines: 80,
+      statements: -10,
+    },
+  },
   verbose: true,
   preset: 'ts-jest',
   transform: {

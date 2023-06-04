@@ -11,6 +11,10 @@ export const ExperienceDisplay = ({
 }: IExperienceDisplayProps) => {
   const TOTAL_XP_SEGMENTS = 6;
   const segments: number[] = [];
+  const percentComplete = +((gainedExperience / totalExperience) * 100).toFixed(
+    2
+  );
+
   for (let j = 1; j <= TOTAL_XP_SEGMENTS; j++) {
     segments.push(j);
   }
@@ -27,7 +31,8 @@ export const ExperienceDisplay = ({
             {numberWithCommas(gainedExperience)}
           </span>{' '}
           /{' '}
-          <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>
+          <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>{' '}
+          (<span data-testid='percentComplete'>{percentComplete}%</span>)
         </legend>
         <ul className={s.segmentList}>
           {segments.map((segment) => (

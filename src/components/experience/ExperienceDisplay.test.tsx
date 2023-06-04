@@ -17,5 +17,11 @@ describe('ExperienceDisplay', function () {
     );
     const totalXPEl: HTMLElement = screen.getByTestId('totalXP');
     expect(totalXPEl).toHaveTextContent('5,000');
+
+    const gainedXPEl: HTMLElement = screen.getByTestId('gainedXP');
+    expect(gainedXPEl).toHaveTextContent('1,000');
+
+    const percentEl: HTMLElement = screen.getByTestId('percentComplete');
+    expect(percentEl).toHaveTextContent('20%');
   });
 });

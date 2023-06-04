@@ -22,5 +22,9 @@
     background-color: skyblue;
     width: 100%;
     border: 1px solid navy;
+
+    &.filled {
+      background-color: #000;
+    }
   }
 }
