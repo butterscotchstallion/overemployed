@@ -1,0 +1,26 @@
+.segmentList {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+.segmentWrapper {
+  legend {
+    text-align: center;
+  }
+}
+
+.segmentItem {
+  display: table-cell;
+  width: 100%;
+  border: 5px solid #fff;
+
+  div {
+    background-color: skyblue;
+    width: 100%;
+    border: 1px solid navy;
+  }
+}
