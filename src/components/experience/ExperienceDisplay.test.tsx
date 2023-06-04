@@ -12,7 +12,7 @@ describe('ExperienceDisplay', () => {
     const gainedXP = 10000;
     render(
       <Provider store={store}>
-        <ExperienceDisplay gainedExperience={gainedXP} />
+        <ExperienceDisplay experienceGained={gainedXP} />
       </Provider>
     );
 

@@ -1,5 +1,5 @@
-import { RootState } from '../../store';
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
+import { RootState } from '../../store';
 import {
   getLevelByGainedExperience,
   getPercentageComplete,
@@ -33,7 +33,7 @@ function setTotalExperienceForLevel(state: RootState) {
 
 function setPercentComplete(state: RootState) {
   state.percentComplete = getPercentageComplete(
-    state.experiencedGained,
+    state.experienceGained,
     state.totalExperienceForLevel
   );
 }
@@ -49,7 +49,7 @@ export const levelSlice = createSlice({
      * @param action
      */
     setExperienceGained: (state: RootState, action: PayloadAction<number>) => {
-      state.experiencedGained = action.payload;
+      state.experienceGained = action.payload;
       setLevelByExperienceGained(state, action.payload);
       setTotalExperienceForLevel(state);
       setPercentComplete(state);
@@ -58,4 +58,6 @@ export const levelSlice = createSlice({
 });
 
 export const { setExperienceGained } = levelSlice.actions;
+export const selectExperienceGained = (state: RootState) =>
+  state.level.experienceGained;
 export default levelSlice.reducer;

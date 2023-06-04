@@ -3,17 +3,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import s from './ExperienceDisplay.module.scss';
 import { setExperienceGained } from './levelSlice';
-//import { setExperienceGained } from './levelActions';
 
 interface IExperienceDisplayProps {
-  gainedExperience: number;
+  experienceGained: number;
 }
 
 export const ExperienceDisplay = ({
-  gainedExperience,
+  experienceGained,
 }: IExperienceDisplayProps) => {
   const dispatch = useDispatch();
   const level = useSelector((state: RootState) => state.level.level);
+  const currentExperience = useSelector(
+    (state: RootState) => state.level.experienceGained
+  );
   const totalExperience = useSelector(
     (state: RootState) => state.level.totalExperienceForLevel
   );
@@ -22,8 +24,8 @@ export const ExperienceDisplay = ({
   );
 
   useEffect(() => {
-    dispatch(setExperienceGained(gainedExperience));
-  }, [dispatch, gainedExperience]);
+    dispatch(setExperienceGained(experienceGained));
+  }, [dispatch, experienceGained]);
 
   function numberWithCommas(x: number) {
     return x ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;
@@ -34,7 +36,7 @@ export const ExperienceDisplay = ({
       <fieldset className={s.segmentWrapper}>
         <legend>
           <span data-testid='gainedXP'>
-            {numberWithCommas(gainedExperience)}
+            {numberWithCommas(currentExperience)}
           </span>{' '}
           /{' '}
           <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>{' '}
@@ -42,7 +44,7 @@ export const ExperienceDisplay = ({
           Level <span data-testid='level'>{level}</span>
         </legend>
         <progress
-          value={gainedExperience}
+          value={currentExperience}
           style={{ width: percentComplete + '%' }}
           data-min='0'
           max='100'
