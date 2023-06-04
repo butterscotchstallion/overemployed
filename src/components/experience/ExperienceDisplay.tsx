@@ -34,13 +34,9 @@ export const ExperienceDisplay = ({
           <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>{' '}
           (<span data-testid='percentComplete'>{percentComplete}%</span>)
         </legend>
-        <ul className={s.segmentList}>
-          {segments.map((segment) => (
-            <li className={s.segmentItem} key={segment}>
-              <div>&nbsp;</div>
-            </li>
-          ))}
-        </ul>
+        <progress value={gainedExperience} data-min='0' max='100'>
+          {percentComplete}%
+        </progress>
       </fieldset>
     </div>
   );
