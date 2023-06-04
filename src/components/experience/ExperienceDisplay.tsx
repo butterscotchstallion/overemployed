@@ -34,9 +34,12 @@ export const ExperienceDisplay = ({
           <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>{' '}
           (<span data-testid='percentComplete'>{percentComplete}%</span>)
         </legend>
-        <progress value={gainedExperience} data-min='0' max='100'>
-          {percentComplete}%
-        </progress>
+        <progress
+          value={gainedExperience}
+          style={{ width: percentComplete + '%' }}
+          data-min='0'
+          max='100'
+        ></progress>
       </fieldset>
     </div>
   );
