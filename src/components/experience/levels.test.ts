@@ -1,5 +1,6 @@
 import {
   getLevelByGainedExperience,
+  getPercentageComplete,
   getTotalExperienceByLevel,
 } from './levels';
 
@@ -12,5 +13,6 @@ describe('Levels', () => {
     expect(getLevelByGainedExperience(5000)).toBe('1');
     expect(getLevelByGainedExperience(10000)).toBe('2');
     expect(getLevelByGainedExperience(500000)).toBe('100');
+    expect(getPercentageComplete(5000, 5000)).toBe(100);
   });
 });

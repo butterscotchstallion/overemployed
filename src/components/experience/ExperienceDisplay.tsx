@@ -2,7 +2,7 @@ import s from './ExperienceDisplay.module.scss';
 import {
   getLevelByGainedExperience,
   getPercentageComplete,
-  getTotalExperienceByLevel
+  getTotalExperienceByLevel,
 } from './levels';
 
 interface IExperienceDisplayProps {
@@ -13,8 +13,8 @@ export const ExperienceDisplay = ({
   gainedExperience,
 }: IExperienceDisplayProps) => {
   const level: string = getLevelByGainedExperience(gainedExperience);
-  const totalExperience = getTotalExperienceByLevel(Number(level));
-  const percentComplete = getPercentageComplete(
+  const totalExperience: number = getTotalExperienceByLevel(Number(level));
+  const percentComplete: number = getPercentageComplete(
     gainedExperience,
     totalExperience
   );
@@ -24,7 +24,7 @@ export const ExperienceDisplay = ({
   }
 
   return (
-    <div data-testid='ExperienceDisplay'>
+    <div data-testid='ExperienceDisplay' className={s.experienceDisplay}>
       <fieldset className={s.segmentWrapper}>
         <legend>
           <span data-testid='gainedXP'>

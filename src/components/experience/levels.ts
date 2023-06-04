@@ -9,11 +9,6 @@ for (let j = 1; j <= MAX_LEVEL; j++) {
   levelXPMap[j] = levelOne * j;
 }
 
-/**
- *
- * @param xp
- * @returns
- */
 function getLevelByGainedExperience(xp: number): string {
   for (const level in levelXPMap) {
     const levelXP = Number(levelXPMap[level]);
@@ -24,14 +19,14 @@ function getLevelByGainedExperience(xp: number): string {
   return '1';
 }
 
-function getTotalExperienceByLevel(level: number) {
+function getTotalExperienceByLevel(level: number): number {
   return levelXPMap[level];
 }
 
 function getPercentageComplete(
   gainedExperience: number,
   totalExperience: number
-) {
+): number {
   return +((gainedExperience / totalExperience) * 100).toFixed(2);
 }
 
