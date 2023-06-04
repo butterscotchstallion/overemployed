@@ -1,23 +1,23 @@
 import s from './ExperienceDisplay.module.scss';
+import {
+  getLevelByGainedExperience,
+  getPercentageComplete,
+  getTotalExperienceByLevel
+} from './levels';
 
 interface IExperienceDisplayProps {
   gainedExperience: number;
-  totalExperience: number;
 }
 
 export const ExperienceDisplay = ({
-  totalExperience,
   gainedExperience,
 }: IExperienceDisplayProps) => {
-  const TOTAL_XP_SEGMENTS = 6;
-  const segments: number[] = [];
-  const percentComplete = +((gainedExperience / totalExperience) * 100).toFixed(
-    2
+  const level: string = getLevelByGainedExperience(gainedExperience);
+  const totalExperience = getTotalExperienceByLevel(Number(level));
+  const percentComplete = getPercentageComplete(
+    gainedExperience,
+    totalExperience
   );
-
-  for (let j = 1; j <= TOTAL_XP_SEGMENTS; j++) {
-    segments.push(j);
-  }
 
   function numberWithCommas(x: number) {
     return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
@@ -32,7 +32,8 @@ export const ExperienceDisplay = ({
           </span>{' '}
           /{' '}
           <span data-testid='totalXP'>{numberWithCommas(totalExperience)}</span>{' '}
-          (<span data-testid='percentComplete'>{percentComplete}%</span>)
+          (<span data-testid='percentComplete'>{percentComplete}%</span>) &bull;
+          Level <span data-testid='level'>{level}</span>
         </legend>
         <progress
           value={gainedExperience}
