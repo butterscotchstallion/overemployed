@@ -4,7 +4,7 @@ function App() {
   return (
     <>
       <div style={{ width: '50%' }}>
-        <ExperienceDisplay gainedExperience={50910} />
+        <ExperienceDisplay gainedExperience={~~(Math.random() * 500000)} />
       </div>
     </>
   );

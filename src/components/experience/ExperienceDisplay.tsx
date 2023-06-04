@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../store';
 import s from './ExperienceDisplay.module.scss';
@@ -12,7 +12,6 @@ interface IExperienceDisplayProps {
 export const ExperienceDisplay = ({
   gainedExperience,
 }: IExperienceDisplayProps) => {
-  const [renderCounter, setRenderCounter] = useState<number>(0);
   const dispatch = useDispatch();
   const level = useSelector((state: RootState) => state.level.level);
   const totalExperience = useSelector(
@@ -24,9 +23,7 @@ export const ExperienceDisplay = ({
 
   useEffect(() => {
     dispatch(setExperienceGained(gainedExperience));
-    setRenderCounter(renderCounter + 1);
-    console.log('rendering');
-  }, [dispatch]);
+  }, [dispatch, gainedExperience]);
 
   function numberWithCommas(x: number) {
     return x ? x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',') : x;

@@ -9,7 +9,6 @@ describe('Levels', () => {
     expect(getTotalExperienceByLevel(1)).toBe(5000);
   });
 
-  // tres
   test('getLevelByGainedExperience', () => {
     expect(getLevelByGainedExperience(5000)).toBe('1');
     expect(getLevelByGainedExperience(10000)).toBe('2');

@@ -4,11 +4,17 @@
 import { render, screen } from '@testing-library/react';
 import { ExperienceDisplay } from './ExperienceDisplay';
 import '@testing-library/jest-dom/extend-expect';
+import { Provider } from 'react-redux';
+import { store } from '../../store';
 
 describe('ExperienceDisplay', () => {
   test('should display experience', () => {
     const gainedXP = 10000;
-    render(<ExperienceDisplay gainedExperience={gainedXP} />);
+    render(
+      <Provider store={store}>
+        <ExperienceDisplay gainedExperience={gainedXP} />
+      </Provider>
+    );
 
     const totalXPEl: HTMLElement = screen.getByTestId('totalXP');
     expect(totalXPEl).toHaveTextContent('10,000');
