@@ -6,7 +6,7 @@ import { RootState } from './store';
 
 function App() {
   const dispatch = useDispatch();
-  const randomXP = useMemo(() => ~~(Math.random() * 50), []);
+  const randomXP = useMemo(() => ~~(Math.random() * 0), []);
   const currentXP = useSelector(
     (state: RootState) => state.level.experienceGained
   );
@@ -23,14 +23,12 @@ function App() {
   }, [totalExperienceForLevel]);
 
   function addXP() {
-    if (currentXP) {
-      dispatch(setExperienceGained(currentXP + addXPAmount));
-    }
+    dispatch(setExperienceGained(currentXP + addXPAmount));
   }
 
   return (
     <>
-      <div style={{ width: '50%' }}>
+      <div>
         <ExperienceDisplay experienceGained={randomXP} />
         <button type='button' onClick={addXP}>
           Add {addXPAmount} XP
