@@ -2,8 +2,10 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../../store';
 import {
   getLevelByGainedExperience,
+  getMaxXP,
   getPercentageComplete,
   getTotalExperienceByLevel,
+  isMaxLevel,
 } from './levels';
 
 export interface IInitialLevelState {
@@ -49,7 +51,13 @@ export const levelSlice = createSlice({
      * @param action
      */
     setExperienceGained: (state: RootState, action: PayloadAction<number>) => {
-      state.experienceGained = action.payload;
+      const maxXP = getMaxXP();
+      const addedXPWouldExceedMaxLevel = action.payload >= maxXP;
+      if (addedXPWouldExceedMaxLevel || isMaxLevel(state.experienceGained)) {
+        state.experienceGained = maxXP;
+      } else {
+        state.experienceGained = action.payload;
+      }
       setLevelByExperienceGained(state, action.payload);
       setTotalExperienceForLevel(state);
       setPercentComplete(state);

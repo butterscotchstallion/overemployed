@@ -1,4 +1,4 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { ExperienceDisplay } from './components/experience/ExperienceDisplay';
 import { setExperienceGained } from './components/experience/levelSlice';
@@ -10,10 +10,21 @@ function App() {
   const currentXP = useSelector(
     (state: RootState) => state.level.experienceGained
   );
+  const totalExperienceForLevel = useSelector(
+    (state: RootState) => state.level.totalExperienceForLevel
+  );
+  const [addXPAmount, setAddXPAmount] = useState<number>(0);
+
+  useEffect(() => {
+    if (totalExperienceForLevel) {
+      const twentyFivePercent = totalExperienceForLevel * 0.25;
+      setAddXPAmount(twentyFivePercent);
+    }
+  }, [totalExperienceForLevel]);
 
   function addXP() {
     if (currentXP) {
-      dispatch(setExperienceGained(currentXP + 2000));
+      dispatch(setExperienceGained(currentXP + addXPAmount));
     }
   }
 
@@ -22,7 +33,7 @@ function App() {
       <div style={{ width: '50%' }}>
         <ExperienceDisplay experienceGained={randomXP} />
         <button type='button' onClick={addXP}>
-          Add XP
+          Add {addXPAmount} XP
         </button>
       </div>
     </>
