@@ -43,12 +43,9 @@ export const ExperienceDisplay = ({
           (<span data-testid='percentComplete'>{percentComplete}%</span>) &bull;
           Level <span data-testid='level'>{level}</span>
         </legend>
-        <progress
-          value={currentExperience}
-          style={{ width: percentComplete + '%' }}
-          data-min='0'
-          max='100'
-        ></progress>
+        <div className={[s.meter, s.orange].join(' ')}>
+          <span style={{ width: percentComplete + '%' }}></span>
+        </div>
       </fieldset>
     </div>
   );
