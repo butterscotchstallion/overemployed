@@ -1,8 +1,4 @@
-interface ILevelXPMap {
-  [level: number]: number;
-}
-const levelXPMap: ILevelXPMap = {};
-
+const levelXPMap: number[] = [];
 levelXPMap[1] = 5000;
 levelXPMap[2] = 10000;
 levelXPMap[3] = 20000;
@@ -24,7 +20,11 @@ levelXPMap[18] = 10000000;
 levelXPMap[19] = 20000000;
 levelXPMap[20] = 50000000;
 
-const MAX_LEVEL = 20;
+for (let j = 21; j <= 80; j++) {
+  levelXPMap[j] = levelXPMap[j - 1] * 2;
+}
+
+const MAX_LEVEL = 100;
 
 function getXPByLevel(level: number) {
   return levelXPMap[level];
