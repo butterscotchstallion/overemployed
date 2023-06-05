@@ -1,16 +1,37 @@
-const LEVEL_1_XP = 5000;
-const MAX_LEVEL = 100;
 interface ILevelXPMap {
   [level: number]: number;
 }
 const levelXPMap: ILevelXPMap = {};
 
-for (let j = 1; j <= MAX_LEVEL; j++) {
-  levelXPMap[j] = LEVEL_1_XP * j;
+levelXPMap[1] = 5000;
+levelXPMap[2] = 10000;
+levelXPMap[3] = 20000;
+levelXPMap[4] = 35000;
+levelXPMap[5] = 55000;
+levelXPMap[6] = 70000;
+levelXPMap[7] = 90000;
+levelXPMap[8] = 120000;
+levelXPMap[9] = 150000;
+levelXPMap[10] = 200000;
+levelXPMap[11] = 350000;
+levelXPMap[12] = 500000;
+levelXPMap[13] = 800000;
+levelXPMap[14] = 1000000;
+levelXPMap[15] = 3000000;
+levelXPMap[16] = 6000000;
+levelXPMap[17] = 8000000;
+levelXPMap[18] = 10000000;
+levelXPMap[19] = 20000000;
+levelXPMap[20] = 50000000;
+
+const MAX_LEVEL = 20;
+
+function getXPByLevel(level: number) {
+  return levelXPMap[level];
 }
 
 function getMaxXP(): number {
-  return levelXPMap[MAX_LEVEL];
+  return getXPByLevel(MAX_LEVEL);
 }
 
 function getLevelByGainedExperience(xp: number): string {
@@ -53,4 +74,5 @@ export {
   getPercentageComplete,
   isMaxLevel,
   getMaxXP,
+  getXPByLevel,
 };

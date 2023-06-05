@@ -6,7 +6,7 @@ import { RootState } from './store';
 
 function App() {
   const dispatch = useDispatch();
-  const randomXP = useMemo(() => ~~(Math.random() * 500000), []);
+  const randomXP = useMemo(() => ~~(Math.random() * 50), []);
   const currentXP = useSelector(
     (state: RootState) => state.level.experienceGained
   );

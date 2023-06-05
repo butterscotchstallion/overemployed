@@ -2,6 +2,7 @@ import {
   getLevelByGainedExperience,
   getPercentageComplete,
   getTotalExperienceByLevel,
+  getXPByLevel,
 } from './levels';
 
 describe('Levels', () => {
@@ -10,9 +11,9 @@ describe('Levels', () => {
   });
 
   test('getLevelByGainedExperience', () => {
-    expect(getLevelByGainedExperience(5000)).toBe('1');
-    expect(getLevelByGainedExperience(10000)).toBe('2');
-    expect(getLevelByGainedExperience(500000)).toBe('100');
-    expect(getPercentageComplete(5000, 5000)).toBe(100);
+    const level = 1;
+    const xp = getXPByLevel(level);
+    expect(getLevelByGainedExperience(xp)).toBe(level.toString());
+    expect(getPercentageComplete(xp, xp)).toBe(100);
   });
 });
