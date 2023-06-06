@@ -16,7 +16,7 @@ module.exports = {
   },
   testEnvironment: 'jsdom',
   testRegex: '(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$',
-  moduleFileExtensions: ['ts', 'tsx', 'json', 'node', 'scss'],
+  moduleFileExtensions: ['ts', 'tsx', 'js', 'json', 'node', 'scss'],
   moduleNameMapper: {
     '\\.(css|scss)$': 'identity-obj-proxy',
   },

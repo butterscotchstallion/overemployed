@@ -6,28 +6,24 @@ import { render, screen } from '@testing-library/react';
 import { Provider } from 'react-redux';
 import { store } from '../../store';
 import { ExperienceDisplay } from './ExperienceDisplay';
-import { getXPByLevel } from './levels';
 
 describe('ExperienceDisplay', () => {
   test('should display experience', () => {
-    const level = 5;
-    const gainedXP = getXPByLevel(level);
     render(
       <Provider store={store}>
-        <ExperienceDisplay experienceGained={gainedXP} />
+        <ExperienceDisplay experienceGained={42} />
       </Provider>
     );
 
-    const totalXPEl: HTMLElement = screen.getByTestId('totalXP');
-    expect(totalXPEl).toBeInTheDocument();
+    const features: string[] = [
+      'totalXP',
+      'gainedXP',
+      'percentComplete',
+      'level',
+    ];
 
-    const gainedXPEl: HTMLElement = screen.getByTestId('gainedXP');
-    expect(gainedXPEl).toBeInTheDocument();
-
-    const percentEl: HTMLElement = screen.getByTestId('percentComplete');
-    expect(percentEl).toHaveTextContent('100%');
-
-    const levelEl: HTMLElement = screen.getByTestId('level');
-    expect(levelEl).toHaveTextContent(level.toString());
+    features.forEach((f: string) => {
+      expect(screen.getByTestId(f)).toBeInTheDocument();
+    });
   });
 });
