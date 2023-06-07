@@ -5,8 +5,9 @@ import schemas
 from models import Characters, db
 
 log.basicConfig(level=log.INFO)
-ws_router = APIRouter()
+character_router = APIRouter()
 
-@ws_router.get("/api/characters/", response_model=list[schemas.CharactersBase])
-def read_users(skip: int = 0, limit: int = 100, session: Session = Depends(db.get_session)):
+
+@character_router.get("/api/characters", response_model=list[schemas.CharactersBase])
+def get_characters(skip: int = 0, limit: int = 100, session: Session = Depends(db.get_session)):
     return Characters.get_users(session, skip=skip, limit=limit)

@@ -1,10 +1,11 @@
 from sqlalchemy import Integer, String, Column, DateTime, Boolean, ForeignKey
 from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
-import Database
+import db
 
-db = Database()
+db = db.Database()
 Base = db.get_base()
+
 
 class Characters(Base):
     """
@@ -16,4 +17,4 @@ class Characters(Base):
     guid = Column(String(50), nullable=False)
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
-    experience_gained = Column(Integer, default=0)
+    experience_gained = Column(Integer(), default=0)

@@ -1,7 +1,8 @@
 from fastapi import FastAPI
-from Database import Database
+from db import Database
 import logging as log
-import character_router
+from character_router import character_router
+
 
 db = Database()
 engine = db.get_engine()

@@ -10,7 +10,7 @@ class CharactersBase(BaseModel):
     guid: Optional[str] = str(uuid4())
     created_at: Optional[datetime] = datetime.now()
     updated_at: Optional[datetime] = datetime.now()
-    experience_gained = Optional[int] = 0
+    experience_gained: Optional[int] = 0
 
     class Config:
         orm_mode = True
