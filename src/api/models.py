@@ -6,8 +6,7 @@ import Database
 db = Database()
 Base = db.get_base()
 
-
-class Character(Base):
+class Characters(Base):
     """
     Character model
     """
