@@ -3,7 +3,7 @@ import models
 
 
 def get_character_by_guid(db: Session, guid: str):
-    return db.query(models.Character).filter(models.Character.guid == guid).first()
+    return db.query(models.Characters).filter(models.Characters.guid == guid).first()
 
 
 def get_characters(db: Session, limit: int, skip: int):
@@ -11,4 +11,4 @@ def get_characters(db: Session, limit: int, skip: int):
 
 
 def update_character_by_guid(db: Session, guid: str, user: models.Characters):
-    return db.query(models.Characters).update(user)
+    return db.query(models.Characters).filter(models.Characters.guid == guid).update(user)
