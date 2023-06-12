@@ -1,4 +1,4 @@
-from sqlalchemy import Integer, String, Column, DateTime, Boolean, ForeignKey
+from sqlalchemy import Integer, String, Column, DateTime
 from datetime import datetime
 from sqlalchemy.orm import Mapped, mapped_column
 import db
