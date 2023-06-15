@@ -2,7 +2,7 @@ from fastapi import APIRouter, Depends
 import logging as log
 from sqlalchemy.orm import Session
 import schemas
-from character import get_character_by_guid
+from character import get_character_by_guid, update_character_by_guid
 from models import db
 
 log.basicConfig(level=log.INFO)
