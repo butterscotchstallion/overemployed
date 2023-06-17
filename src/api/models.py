@@ -18,3 +18,16 @@ class Characters(Base):
     created_on = Column(DateTime(), default=datetime.now)
     updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
     experience_gained = Column(Integer(), default=0)
+
+
+class Users(Base):
+    """
+    User model
+    """
+    __tablename__ = 'users'
+    id: Mapped[int] = mapped_column(Integer(), primary_key=True)
+    name = Column(String(20), nullable=False, index=True)
+    password = Column(String(255), nullable=False)
+    guid = Column(String(50), nullable=False)
+    created_on = Column(DateTime(), default=datetime.now)
+    updated_on = Column(DateTime(), default=datetime.now, onupdate=datetime.now)
