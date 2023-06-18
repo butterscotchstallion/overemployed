@@ -1,7 +1,7 @@
 from typing import Type
 
 from sqlalchemy.orm import Session
-from password_utils import get_hashed_password, check_password
+from password_utils import check_password
 import models
 
 
@@ -17,16 +17,15 @@ def update_user_by_guid(db: Session, guid: str, user: models.Users) -> int:
     return db.query(models.Users).filter(models.Users.guid == guid).update(user)
 
 
-def verify_credentials(db: Session, user: models.Users) -> bool:
+def verify_credentials(db: Session, user: models.Users) -> bool | None:
     """
     1. Get user by username and password
     2. Hash supplied password and compare to the one stored in the
     DB
-    :param db:
-    :param user:
+    :param db: Session
+    :param user: models.User instance
     :return: bool
     """
-    hashed_pw = get_hashed_password(user.password)
-    pw_match = models.Users.password == hashed_pw
-    username_match = models.Users.name == user.username
-    return db.query(models.Users).filter(username_match and pw_match).first()
+    existing_user = get_user_by_guid(db, user.guid)
+    if existing_user:
+        return check_password(user.password, existing_user.password)
